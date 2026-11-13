@@ -1,10 +1,12 @@
 import './style.css';
 import './animotion.css';
-import {setupStudio,studioState} from './studio';
+import {setupStudio,studioState,applyTreeFilters} from './studio';
 import {sheetFor,nameFor,isStudy} from './library.mjs';
 import {assemblySheet,partsBook,item} from './exploded';
 import {zipSync,strToU8} from 'fflate';
 import {denomination} from './nomenclature.mjs';
+import {classifyPart,subgroupFor,studyNotice} from './learning.mjs';
+import {initSheetLink,updateLinkedSheet,highlightLinkedPart} from './sheet-link';
 setupStudio();
 import {Viewport,calibration,phases} from './viewport';
 import {defaults,definitions,clutch,validate} from './mechanics.mjs';
@@ -15,7 +17,7 @@ const titles={C:'Embrague hidráulico multidisco',B:'Embrague de automóvil',A:'
 const labels={length:'Longitud de referencia',shaft:'Ø eje principal',bearingOD:'Ø exterior rodamiento',housingOD:'Ø envolvente',pitch:'Paso de cadena',teeth:'Dientes por hilera',discs:'Discos revestidos',frictionID:'Ø interior fricción',frictionOD:'Ø exterior fricción',discT:'Espesor de disco',plateT:'Espesor separador',gap:'Holgura por interfaz',pressure:'Presión máxima',mu:'Coef. de fricción',returnForce:'Fuerza de retorno',travel:'Carrera de liberación',leverCount:'Palancas',offset:'Excentricidad'};
 const sheets={C:'Hoja 281',B:'Hoja 280',A:'Secciones axial y A–A'};
 const saved={};let active='C',p=defaults('C'),meta,worker:Worker,selection='',busy=false,playing=false,time=0,last=0,phase={},revision=0;
-let viewport:Viewport;
+let viewport:Viewport;let subPlaying=false,subStart=0;
 const overlay=()=>{
  if(!viewport)return;
  const box=el('overlay'),mode=el('refView').value;
@@ -36,6 +38,7 @@ const overlay=()=>{
  box.style.clipPath='inset('+Math.max(0,y+ref.crop[1]*sy)+'px '+Math.max(0,w-x-ref.crop[2]*sx)+'px '+Math.max(0,h-y-ref.crop[3]*sy)+'px '+Math.max(0,x+ref.crop[0]*sx)+'px)';
 };
 viewport=new Viewport(el('stage'),select,overlay);
+initSheetLink(select);
 function save(blob,name){
  const link=document.createElement('a'),url=URL.createObjectURL(blob);link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),15000);
 }
@@ -44,24 +47,45 @@ function selected(){return meta?.parts.find(i=>i.id===selection);}
 function select(id){
  if(!meta)return;selection=id;viewport.selected=id;
  document.querySelectorAll('.node').forEach(n=>n.classList.toggle('selected',(n as HTMLElement).dataset.id===id));
- const i=selected();if(!i)return;
+ const i=selected();if(!i)return;highlightLinkedPart(id);
+ if(viewport.onlyGroup && subgroupFor(i)!==viewport.onlyGroup){viewport.onlyGroup=subgroupFor(i)||'';viewport.style();}
  if(viewport.only){viewport.only=id;viewport.hidden.delete(id);}
  const shift=viewport.manual.get(id);el('shift').value=String(shift?.value||0);el('shift-axis').value=(shift?.axis||'z').toUpperCase();el('shift-value').textContent=el('shift').value+' mm';
- el('part-name').textContent=i.name;
+ const cls=classifyPart(i,active);el('part-name').textContent=i.name;
+ if(subgroupFor(i)){el('subassembly-target').value=subgroupFor(i);viewport.subassemblyTarget=subgroupFor(i);}
  const bounds=i.cad.bounds,dim=bounds[1].map((v,j)=>(v-bounds[0][j]).toFixed(1)).join(' × ');
  el('properties').innerHTML='<p>'+i.role+'</p><dl><dt>Identificador</dt><dd>'+id+'</dd><dt>Grupo</dt><dd>'+i.parent+'</dd><dt>Envolvente local</dt><dd>'+dim+' mm</dd><dt>Volumen CAD</dt><dd>'+(i.cad.volume/1000).toFixed(2)+' cm³</dd><dt>Restricción</dt><dd>'+i.joint+' / '+i.drive+'</dd><dt>Carrera axial</dt><dd>'+i.slide.toFixed(2)+' mm</dd><dt>Material</dt><dd>Sin especificar</dd></dl>';
  viewport.style();
 }
 function refreshPanel(){
  el('tree').replaceChildren();
- const groups=new Map();
- for(const part of meta.parts){
-  if(!groups.has(part.group)){
-   const d=document.createElement('details'),s=document.createElement('summary');d.open=groups.size<4;s.textContent=part.group;d.append(s);el('tree').append(d);groups.set(part.group,d);
-  }
-  const b=document.createElement('button');b.className='node';b.dataset.id=part.id;b.innerHTML='<span class="pos">'+item(meta.parts.indexOf(part))+'</span><i class="swatch" style="background:'+part.color+'"></i>'+part.name;b.onclick=()=>select(part.id);groups.get(part.group).append(b);
+ const groupMap=new Map<string,HTMLDetailsElement>();
+ const branches=new Map<string,HTMLDetailsElement>();
+ for(const category of ['fixed','moving']){
+  const parent=document.createElement('details');parent.className='motion-branch';parent.open=true;
+  const summary=document.createElement('summary');summary.textContent=(category==='fixed'?'Fijos respecto al bastidor':'Móviles')+' · '+meta.parts.filter(p=>classifyPart(p,active).category===category).length;
+  parent.append(summary);el('tree').append(parent);branches.set(category,parent);
  }
- el('count').textContent=meta.parts.length+' piezas';el('params').replaceChildren();
+ for(const [index,part] of meta.parts.entries()){
+  const cls=classifyPart(part,active),key=cls.category+'|'+part.group;
+  if(!groupMap.has(key)){
+   const group=document.createElement('details');group.className='group-branch';group.open=groupMap.size<6;
+   const summary=document.createElement('summary');summary.textContent=part.group;group.append(summary);branches.get(cls.category)?.append(group);groupMap.set(key,group);
+  }
+  const b=document.createElement('button');b.className='node';b.dataset.id=part.id;b.dataset.motion=cls.category;
+  b.title=cls.basis+' · '+cls.confidence;
+  b.innerHTML='<span class="pos">'+item(index)+'</span><i class="swatch" style="background:'+part.color+'"></i>'+part.name;
+  b.onclick=()=>select(part.id);groupMap.get(key)?.append(b);
+ }
+ el('count').textContent=meta.parts.length+' piezas';
+ el('motion-evidence').textContent=studyNotice(active);
+ const sub=el('subassembly-target') as unknown as HTMLSelectElement;sub.replaceChildren(new Option('Seleccionar rodamiento',''));
+ for(const g of [...new Set(meta.parts.map(subgroupFor).filter(Boolean))])sub.add(new Option(String(g),String(g)));
+ el('subexplode').value='0';el('subexplode-value').textContent='0 %';
+ viewport.subassemblyTarget='';viewport.subExplode=0;viewport.onlyGroup='';
+ el('subassembly-tools').hidden=sub.options.length===1;
+ applyTreeFilters();
+ el('params').replaceChildren();
  for(const [k,[v,unit,source,lo,hi]] of Object.entries(definitions[active]) as any){
   const lab=document.createElement('label');lab.htmlFor='p-'+k;lab.innerHTML='<span>'+labels[k]+' '+unit+'<br><small>'+(p[k]!==v?'EDITADO':source)+'</small></span>';
   const field=document.createElement('input');field.type='number';field.id='p-'+k;field.step=['teeth','discs','leverCount'].includes(k)?'1':'any';field.min=lo;field.max=hi;field.value=p[k];field.disabled=lo===hi;lab.append(field);el('params').append(lab);
@@ -73,6 +97,7 @@ function refreshPanel(){
  el('calibration').textContent=active==='A'?'Escala relativa. Esta lámina carece de cotas legibles.':active==='B'?'Calibración radial con Ø240. Escala axial supuesta isotrópica.':'Calibración axial con 380 mm y radial con Ø60. Vista A y detalle C–C tienen escalas distintas.';
  if(isStudy(active))el('calibration').textContent='Consultar medidas y variantes en el PDF original. Forma, cantidades y posiciones del modelo son interpretativas.';
  const span=Math.max(...meta.parts.map(i=>Math.max(...i.cad.bounds[1].map((v,j)=>v-i.cad.bounds[0][j]))));el('shift').min=String(-Math.ceil(span));el('shift').max=String(Math.ceil(span));
+ updateLinkedSheet(active,meta.parts.map(x=>x.id));
  select(meta.parts.some(i=>i.id===selection)?selection:(({C:'disc-1',B:'disc',A:'input'})[active]||meta.parts[0].id));overlay();
 }
 function build(key,params){
@@ -93,7 +118,7 @@ function build(key,params){
  };
  pending.postMessage({action:'build',key,p:params});
 }
-function reset(){time=0;phase={};last=0;playing=false;el('play').textContent='Reproducir';el('timeline').value='0';el('eng').value='0';el('explode').value='0';viewport.manual.clear();el('shift').value='0';el('shift-value').textContent='0 mm';el('exploded-toggle').setAttribute('aria-pressed','false');el('exploded-toggle').textContent='Explosionar';}
+function reset(){subPlaying=false;subStart=0;el('subassembly-play').textContent='Animar piezas';time=0;phase={};last=0;playing=false;el('play').textContent='Reproducir';el('timeline').value='0';el('eng').value='0';el('explode').value='0';viewport.subExplode=0;el('subexplode').value='0';el('subexplode-value').textContent='0 %';viewport.manual.clear();el('shift').value='0';el('shift-value').textContent='0 mm';el('exploded-toggle').setAttribute('aria-pressed','false');el('exploded-toggle').textContent='Explosionar';}
 el('assembly').onchange=()=>{const k=el('assembly').value;build(k,saved[k]||defaults(k));};
 el('apply').onclick=()=>{if(busy)return;const q={};for(const k of Object.keys(p))q[k]=el('p-'+k).value===''?NaN:val('p-'+k);build(active,q);};
 el('params').onsubmit=e=>{e.preventDefault();el('apply').click();};
@@ -105,9 +130,15 @@ for(const id of ['transparent','wire','section','cut'])el(id).oninput=()=>{
 (el('refView') as unknown as HTMLSelectElement).add(new Option('Vista de extremo alineada','end'));
 el('refView').onchange=()=>{const mode=el('refView').value;if(['aligned','end'].includes(mode)){const view=mode==='end'?'Frontal':'Axial';el('view').value=view;viewport.setView(view);}overlay();};el('opacity').oninput=overlay;
 function fitCurrent(){viewport.draw(val('eng'),phase,val('explode'));viewport.setView(el('view').value);}
-el('isolate').onclick=()=>{viewport.only=viewport.only===selection?'':selection;viewport.hidden.delete(selection);viewport.style();fitCurrent();};
+el('isolate').onclick=()=>{viewport.onlyGroup='';viewport.only=viewport.only===selection?'':selection;viewport.hidden.delete(selection);viewport.style();fitCurrent();};
 el('hide').onclick=()=>{if(viewport.hidden.has(selection))viewport.hidden.delete(selection);else viewport.hidden.add(selection);viewport.style();};
-el('show').onclick=()=>{viewport.only='';viewport.hidden.clear();viewport.style();fitCurrent();};
+el('show').onclick=()=>{viewport.only='';viewport.onlyGroup='';viewport.hidden.clear();viewport.style();fitCurrent();};
+el('motion-colors').onchange=()=>{viewport.motionColors=el('motion-colors').checked;viewport.style();};
+(el('subassembly-target') as unknown as HTMLSelectElement).onchange=()=>{viewport.subassemblyTarget=el('subassembly-target').value;viewport.dirty=true;};
+el('subexplode').oninput=()=>{subPlaying=false;el('subassembly-play').textContent='Animar piezas';viewport.subExplode=val('subexplode');el('subexplode-value').textContent=Math.round(viewport.subExplode*100)+' %';viewport.dirty=true;};
+el('subassembly-play').onclick=()=>{if(!el('subassembly-target').value)return;subPlaying=!subPlaying;subStart=0;el('subassembly-play').textContent=subPlaying?'Pausar animación':'Animar piezas';};
+el('subassembly-isolate').onclick=()=>{const g=el('subassembly-target').value;if(!g)return;viewport.only='';viewport.onlyGroup=viewport.onlyGroup===g?'':g;viewport.style();fitCurrent();};
+el('subassembly-reset').onclick=()=>{subPlaying=false;el('subassembly-play').textContent='Animar piezas';el('subexplode').value='0';viewport.subExplode=0;el('subexplode-value').textContent='0 %';viewport.onlyGroup='';viewport.style();fitCurrent();};
 el('guides').oninput=()=>viewport.guidesOn=el('guides').checked;
 function adjustPiece(){if(!selected())return;const amount=val('shift');if(amount)viewport.manual.set(selection,{axis:el('shift-axis').value.toLowerCase(),value:amount});else viewport.manual.delete(selection);el('shift-value').textContent=amount+' mm';}
 el('shift').oninput=adjustPiece;el('shift-axis').onchange=adjustPiece;el('shift-reset').onclick=()=>{el('shift').value='0';adjustPiece();};
@@ -134,6 +165,13 @@ el('png').onclick=()=>viewport.renderer.domElement.toBlob(b=>save(b,active+'-vis
 el('json').onclick=()=>save(new Blob([JSON.stringify({...meta,parameterDefinitions:definitions[active]},null,2)]),active+'-assembly.json');
 let metrics='';
 function frame(now){
+ if(subPlaying){
+  if(!subStart)subStart=now;
+  const t=Math.min(1,(now-subStart)/8000);
+  viewport.subExplode=t<.5?t*2:(1-t)*2;
+  el('subexplode').value=String(viewport.subExplode);el('subexplode-value').textContent=Math.round(viewport.subExplode*100)+' %';
+  if(t>=1){subPlaying=false;subStart=0;el('subassembly-play').textContent='Animar piezas';}
+ }
  const e=val('eng');
  if(playing&&meta){
   const dt=Math.min(60-time,Math.max(0,(now-(last||now))/1000)*Math.max(.1,Math.min(5,val('speed'))));time+=dt;
@@ -147,7 +185,7 @@ function frame(now){
   el('state').textContent=state;
   let message=active==='A'?'Entrada y portador independientes. No se ha identificado una relación de engrane.':'Movimiento prescrito · sin dinámica de deslizamiento.';
   if(isStudy(active))message='Despiece geométrico interpretativo. Las medidas y cantidades estimadas requieren cotejo con la lámina.';
-  const tag=el('pick-tag'),obj=viewport.objects.get(selection);tag.hidden=!(val('explode')||viewport.manual.size)||!obj?.visible;
+  const tag=el('pick-tag'),obj=viewport.objects.get(selection);tag.hidden=!(val('explode')||viewport.subExplode||viewport.manual.size)||!obj?.visible;
   if(!tag.hidden){const p=selected(),[a,b]=p.cad.bounds;const v=obj.position.clone().fromArray(a).lerp(obj.position.clone().fromArray(b),.5);obj.localToWorld(v);const [x,y]=viewport.pixel(v.x,v.y,v.z);tag.style.left=x+'px';tag.style.top=y+'px';tag.textContent=item(meta.parts.indexOf(p));}
   if(h)message='<dl><dt>Carrera pistón</dt><dd>'+h.displacement.toFixed(2)+' mm</dd><dt>Presión aplicada</dt><dd>'+(p.pressure*e).toFixed(3)+' MPa</dd><dt>Fuerza hidráulica</dt><dd>'+h.applied.toFixed(0)+' N</dd><dt>Apriete neto</dt><dd>'+h.clamp.toFixed(0)+' N</dd><dt>Capacidad ideal</dt><dd>'+h.torque.toFixed(1)+' N·m</dd></dl>'+message;
   if(message!==metrics){el('metrics').innerHTML=message;metrics=message;}
