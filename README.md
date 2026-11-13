@@ -79,3 +79,7 @@ Las secciones SVG/DXF proceden de intersecciones geométricas en OCP. Las vistas
 
 Las escalas de las vistas B–B, C–C, D–D, E–E y los detalles sin cotas se tratan por separado en los informes. La verificación implementada cubre las dos vistas principales, las dimensiones asignadas y los detalles generados. Permanecen pendientes la correspondencia dimensional de cada detalle ampliado, el ajuste completo de contornos, la forma exacta de fundición y la identificación de los elementos omitidos de cada lámina.
 
+
+## Interpretación de elementos de máquina — M2
+
+El editor dispone de un árbol funcional de **elementos fijos al bastidor / móviles**, colores didácticos optativos, subdespiece animado de rodamientos con jaula interpretativa y modo **Plano ↔ 3D**. Las correspondencias exactas con las láminas se anotan y exportan como JSON revisable; las hipótesis cinemáticas de los estudios recientes se distinguen de las verificadas. Consulte [`docs/M2_INTERPRETACION_Y_SUBENSAMBLES.md`](docs/M2_INTERPRETACION_Y_SUBENSAMBLES.md) antes de usarlo en clase.
