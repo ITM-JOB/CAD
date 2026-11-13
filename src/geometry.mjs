@@ -54,13 +54,23 @@ export function catalog(key){
 }
 export function bearing(c,id,z,inner,outer,width,outerDrive='output',innerDrive='input'){
   const R=(outer+inner)/2, ball=(outer-inner)*.245,common=id.split('-')[0]+'-'+[inner,outer,width].join('_');
-  // Revolved circular groove in each race with a small running clearance.
+  // The three-dimensional rings and rolling elements are independently selectable.
   const groove=r.drawCircle(ball*1.03).translate(R,width/2).sketchOnPlane('XZ').revolve([0,0,1]);
-  c.add(id+'-inner','Inner race','Bearings','Locates the shaft radially',common+'-ir',()=>ring(R-ball*.67,inner,width).cut(groove),z,{drive:innerDrive});
-  c.add(id+'-outer','Outer race','Bearings','Locates the barrel radially',common+'-or',()=>ring(outer,R+ball*.67,width).cut(groove),z,{drive:outerDrive});
+  const subassembly='Rodamiento '+id;
+  c.add(id+'-inner','Inner race','Bearings','Locates the shaft radially',common+'-ir',()=>ring(R-ball*.67,inner,width).cut(groove),z,{drive:innerDrive,subassembly,subPart:'inner'});
+  c.add(id+'-outer','Outer race','Bearings','Locates the barrel radially',common+'-or',()=>ring(outer,R+ball*.67,width).cut(groove),z,{drive:outerDrive,subassembly,subPart:'outer'});
+  c.add(id+'-cage','Bearing cage (schematic)','Bearings','Keeps rolling elements spaced; cage geometry is interpretative',common+'-cage',()=>{
+    const t=Math.max(.55,Math.min(width*.08,ball*.22));
+    const rim=()=>ring(R+ball*.34,R-ball*.34,t);
+    let body=rim().fuse(rim().translateZ(width-t));
+    for(let j=0;j<8;j++){
+      const [x,y]=polar(R,(j+.5)*Math.PI/4);
+      body=body.fuse(cyl(Math.max(.4,ball*.1),width-2*t).translate(x,y,t));
+    }
+    return body;
+  },z,{drive:id+'-cage',subassembly,subPart:'cage',color:palette.steel});
   for(let j=0;j<8;j++){
     const [x,y]=polar(R,j*Math.PI/4);
-    c.add(id+'-ball-'+(j+1),'Ball '+(j+1),'Bearings','Rolling element, cage and ball spin unresolved',common+'-ball',()=>r.makeSphere(ball),z+width/2,{x,y,drive:id+'-cage',color:palette.light});
+    c.add(id+'-ball-'+(j+1),'Ball '+(j+1),'Bearings','Rolling element; self-spin unresolved',common+'-ball',()=>r.makeSphere(ball),z+width/2,{x,y,drive:id+'-cage',subassembly,subPart:'rolling',color:palette.light});
   }
 }
-
