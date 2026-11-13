@@ -1,0 +1,5 @@
+cadquery-ocp-novtk==8.0.1.1.0
+ezdxf==1.4.5
+trimesh==5.2.1
+numpy==2.5.4
+

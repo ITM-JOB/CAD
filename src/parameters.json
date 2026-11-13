@@ -1,0 +1,183 @@
+{
+  "C": {
+    "length": [
+      380,
+      "mm",
+      "EXPLICIT",
+      340,
+      440
+    ],
+    "shaft": [
+      60,
+      "mm",
+      "EXPLICIT",
+      54,
+      64
+    ],
+    "bearingOD": [
+      110,
+      "mm",
+      "EXPLICIT",
+      100,
+      118
+    ],
+    "housingOD": [
+      310,
+      "mm",
+      "EXPLICIT",
+      300,
+      330
+    ],
+    "pitch": [
+      20,
+      "mm",
+      "EXPLICIT",
+      18,
+      22
+    ],
+    "teeth": [
+      30,
+      "",
+      "EXPLICIT",
+      26,
+      34
+    ],
+    "discs": [
+      2,
+      "",
+      "ESTIMATED",
+      1,
+      4
+    ],
+    "frictionID": [
+      160,
+      "mm",
+      "ESTIMATED",
+      145,
+      170
+    ],
+    "frictionOD": [
+      248,
+      "mm",
+      "ESTIMATED",
+      225,
+      255
+    ],
+    "discT": [
+      7,
+      "mm",
+      "ESTIMATED",
+      4,
+      9
+    ],
+    "plateT": [
+      5,
+      "mm",
+      "ESTIMATED",
+      3,
+      7
+    ],
+    "gap": [
+      0.6,
+      "mm",
+      "ESTIMATED",
+      0.2,
+      1.2
+    ],
+    "pressure": [
+      0.32,
+      "MPa",
+      "ESTIMATED",
+      0,
+      0.5
+    ],
+    "mu": [
+      0.12,
+      "",
+      "ESTIMATED",
+      0.03,
+      0.35
+    ],
+    "returnForce": [
+      650,
+      "N",
+      "ESTIMATED",
+      0,
+      3000
+    ]
+  },
+  "B": {
+    "frictionOD": [
+      240,
+      "mm",
+      "EXPLICIT",
+      220,
+      250
+    ],
+    "frictionID": [
+      145,
+      "mm",
+      "EXPLICIT",
+      130,
+      155
+    ],
+    "shaft": [
+      30,
+      "mm",
+      "ESTIMATED",
+      25,
+      34
+    ],
+    "discT": [
+      10,
+      "mm",
+      "ESTIMATED",
+      7,
+      13
+    ],
+    "travel": [
+      3,
+      "mm",
+      "ESTIMATED",
+      1,
+      5
+    ],
+    "leverCount": [
+      3,
+      "",
+      "ESTIMATED",
+      3,
+      3
+    ]
+  },
+  "A": {
+    "shaft": [
+      18,
+      "mm",
+      "ESTIMATED",
+      16,
+      20
+    ],
+    "offset": [
+      42,
+      "mm",
+      "ESTIMATED",
+      39,
+      45
+    ],
+    "housingOD": [
+      180,
+      "mm",
+      "ESTIMATED",
+      174,
+      195
+    ],
+    "length": [
+      86,
+      "mm",
+      "ESTIMATED",
+      82,
+      92
+    ]
+  }
+}

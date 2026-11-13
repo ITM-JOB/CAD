@@ -1,0 +1,48 @@
+{
+  "A": {
+    "drawing": "Transmission, axial section and half-section A–A",
+    "views": {
+      "axial": "Left; coaxial projecting shafts, parallel offset axis, carrier cheeks, journals, ball symbols, casing and bolted end closures.",
+      "A–A": "Right; sectional half exposes offset wheels, lightening holes and central member. Repeated offset centres support a carrier interpretation.",
+      "D/E": "Direction arrows, not separate supplied detail drawings."
+    },
+    "evidence": "No readable metric scale or tooth specifications. Axial and transverse views support a probable epicyclic arrangement. Internal fixed member and tooth engagement not demonstrated.",
+    "omissions": [
+      "Unresolved mesh boundaries, exact gear type and tooth count, locking member, tooth geometry, transmission ratio.",
+      "Lifting eye, filler, seals, drain, carrier ties and some retaining hardware omitted. Offset members are identifiable webs and hubs with undetermined peripheries.",
+      "No verified absolute dimension; dimensional values are illustrative. Two commanded speeds are independent observations, not an inferred gear law."
+    ]
+  },
+  "B": {
+    "drawing": "Hoja 280 · Embrague de un automóvil",
+    "views": {
+      "axial": "Left; one driven friction disc between flywheel and pressure plate, longitudinally splined output hub, cover-mounted coil springs, pivoted release levers and release bearing.",
+      "A–A": "Right; radial lever/pivot layout and central rotating members.",
+      "B": "Lower partial external view of the release mechanism.",
+      "C–C": "Upper central cut through the pivot/adjuster.",
+      "D–D/E–E": "Enlarged details of pin and section, not dimensioned."
+    },
+    "evidence": "Read Ø240 and Ø145 on the main radial extension lines for the outer/inner working annulus. Ø65 is legible on the lower bolt-circle-level extensions. Its exact interface assignment needs confirmation.",
+    "omissions": [
+      "Ø65 retained as unassigned, not used to dimension a fabricated bolt pattern.",
+      "Housing contour, web, spring and lever geometry, spline form, preload, free output speed and travel are approximate. Adjuster, detailed clevis, fork, pilot bearing and engine flange hardware omitted.",
+      "Schematic lever contact pads and return linkage; torque and time-to-lock are not identified."
+    ]
+  },
+  "C": {
+    "drawing": "Hoja 281 · Embragues de fricción de discos, accionamiento hidráulico",
+    "views": {
+      "axial": "Top main sectional view, Variant I rotary union at left. Shaft oil gallery, annular actuator, lined plate pairs, sliding separator, backing plate, supported barrel and toothed rim.",
+      "A": "Reduced fragmentary end view below; bolting and dogs visible. Calibrate independently using Ø310.",
+      "B–B": "Enlarged spring/retaining detail for Variante II. An alternative is not a second component of Variant I.",
+      "C–C": "Tooth spaces around pitch circle, drawing note for double-row chain, pitch 20 mm and 30 teeth."
+    },
+    "evidence": "380 axial datum distance; Ø40, Ø70, Ø60, Ø110, Ø140 nominal radial annotations. Ø160, Ø240 and Ø310 occur on reduced A. Dimensional fit suffixes are not tolerances in this model. Two lined carriers with facing either side are inferred from the axial detail. Four visible tooth rows interpreted as two duplex tracks; tooth pitch/count apply circumferentially.",
+    "omissions": [
+      "Ø160 and Ø240 on reduced A are recorded independently of friction-band and piston estimations; their exact feature witnesses require original-resolution confirmation.",
+      "Supply range 3–3.5 kg/cm² interpreted as kgf/cm² (0.2941995–0.34323275 MPa). Nominal demonstration pressure 0.32 MPa; piston annulus, friction coefficient, return force, wear law, groove geometry and spring rate are assumed.",
+      "Seal lip detail, screw threads, piston sealing, circlips, guide-pin and drilled gallery paths simplified. Coupling dogs are provisional straight-sided forms. Tooth seats assume roller diameter 0.62 pitch. No chain fit or GOST conformance established.",
+      "Axial 380 ends at the sleeve face. Broken line at shaft end denotes continuation; model is trimmed to this working span. No total installed shaft length specified."
+    ]
+  }
+}

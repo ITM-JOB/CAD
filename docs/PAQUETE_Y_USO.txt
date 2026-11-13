@@ -1,0 +1,1 @@
+Paquete para DESARROLLO LOCAL con recursos de referencia originales. No publicar PDFs escaneados ni miniaturas en repositorio publico sin comprobar derechos de redistribucion. Excluidos node_modules, .venv, .manim, .npm-local y dist. Para instalacion npm ci.
