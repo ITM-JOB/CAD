@@ -4,6 +4,7 @@ import {GLTFExporter} from 'three/addons/exporters/GLTFExporter.js';
 import {pose,velocities} from './mechanics.mjs';
 import {extraction} from './exploded';
 import {isStudy} from './library.mjs';
+import {classifyPart,subgroupFor,bearingPartKind} from './learning.mjs';
 const axis=(x,y,z)=>new T.Vector3(x,y,z);
 export const calibration={
  C:{origin:[47,390],scale:[(977-47)/380,(462-318)/60],size:[1223,1047],crop:[40,14,978,766]},
@@ -29,7 +30,8 @@ export class Viewport{
  scene=new T.Scene(); root=new T.Group(); objects=new Map<string,T.Mesh>(); renderer:T.WebGLRenderer;
  ortho=new T.OrthographicCamera();persp=new T.PerspectiveCamera(36,1,.1,10000);camera:T.Camera=this.ortho;
  orbit:OrbitControls; center=new T.Vector3(); radius=160;extent=400; view='Isométrica';meta:any;
- selected=''; hidden=new Set<string>();only='';wire=false;transparent=false;section='none';cut=0;
+ selected=''; hidden=new Set<string>();only='';onlyGroup='';wire=false;transparent=false;section='none';cut=0;
+    motionColors=false; subassemblyTarget='';subExplode=0;
  offsets=new Map<string,T.Vector3>();manual=new Map<string,{axis:string,value:number}>(); guides:T.LineSegments; guidesOn=true;
  dirty=true;lastPose='';
  constructor(public host:HTMLElement,onPick:(id:string)=>void,public overlay:()=>void){
@@ -55,7 +57,7 @@ export class Viewport{
  }
  load(meta,geometries){
   const old=new Set<T.BufferGeometry>();this.objects.forEach(m=>{old.add(m.geometry);(m.material as T.Material).dispose();});
-  old.forEach(g=>g.dispose());this.root.clear();this.objects.clear();this.meta=meta;this.hidden.clear();this.only='';
+  old.forEach(g=>g.dispose());this.root.clear();this.objects.clear();this.meta=meta;this.hidden.clear();this.only='';this.onlyGroup='';this.subExplode=0;this.subassemblyTarget='';
   this.offsets=extraction(meta.parts);this.manual.clear();this.guides.geometry.dispose();this.guides.geometry=new T.BufferGeometry();this.guides.geometry.setAttribute('position',new T.BufferAttribute(new Float32Array(meta.parts.length*6),3));
   const geos=new Map(),groups=new Map();
   for(const [key,data] of Object.entries(geometries) as any){
@@ -110,14 +112,15 @@ export class Viewport{
   const plane=new T.Plane(normal,-normal.dot(this.center)-this.cut*this.radius);
   for(const p of this.meta.parts){
    const obj=this.objects.get(p.id),mat=obj.material as T.MeshStandardMaterial;
-   obj.visible=(!this.only||this.only===p.id)&&!this.hidden.has(p.id);
+   obj.visible=(!this.only||this.only===p.id)&&(!this.onlyGroup||subgroupFor(p)===this.onlyGroup)&&!this.hidden.has(p.id);
+       mat.color.set(this.motionColors?(classifyPart(p,this.meta.key).category==='fixed'?'#74777c':'#7c4dff'):p.color);
    mat.wireframe=this.wire;mat.transparent=this.transparent&&p.cover;mat.opacity=mat.transparent?.19:1;mat.depthWrite=!mat.transparent;
    mat.clippingPlanes=this.section==='none'?[]:[plane];
    mat.emissive.set(p.id===this.selected?0x275e50:0);mat.needsUpdate=true;
   }
  }
  draw(e,phase,explode){
-  const signature=JSON.stringify([e,phase,explode,this.guidesOn,[...this.manual]]);
+  const signature=JSON.stringify([e,phase,explode,this.subExplode,this.subassemblyTarget,this.guidesOn,[...this.manual]]);
   if(!this.dirty&&signature===this.lastPose)return;
   this.lastPose=signature;this.dirty=false;
   const attr=this.guides.geometry.getAttribute('position');let n=0;const guideGroups=new Set<string>();
@@ -127,6 +130,21 @@ export class Viewport{
    const group=p.group+'|'+p.ref+'|'+p.z,guide=obj.visible&&(!guideGroups.has(group)||p.id===this.selected||this.manual.has(p.id));
    if(guide){guideGroups.add(group);attr.setXYZ(2*n,obj.position.x+v.x,obj.position.y+v.y,obj.position.z+v.z);}
    obj.position.addScaledVector(this.offsets.get(p.id),explode);
+   if(this.subExplode>0 && subgroupFor(p)===this.subassemblyTarget){
+      const groupParts=this.meta.parts.filter(q=>subgroupFor(q)===this.subassemblyTarget);
+      const anchor=groupParts.find(q=>bearingPartKind(q)==='inner')||groupParts[0];
+      const width=Math.max(8,anchor.cad.bounds[1][2]-anchor.cad.bounds[0][2]);
+      const r=new T.Vector3(p.x-anchor.x,p.y-anchor.y,0);
+      const kind=bearingPartKind(p);
+      const progress=(start:number)=>Math.max(0,Math.min(1,(this.subExplode-start)*4));
+      if(kind==='inner')obj.position.z-=width*1.45*progress(.70);
+      else if(kind==='outer')obj.position.z+=width*1.45*progress(0);
+      else if(kind==='cage')obj.position.z+=width*.40*progress(.20);
+      else if(kind==='rolling'){
+         if(r.lengthSq()<.001)r.set(1,0,0);
+         obj.position.addScaledVector(r.normalize(),Math.max(9,width*1.4)*progress(.45));
+      }
+   }
    const move=this.manual.get(p.id);if(move)obj.position[move.axis]+=move.value;
    if(guide){attr.setXYZ(2*n+1,obj.position.x+v.x,obj.position.y+v.y,obj.position.z+v.z);n++;}
   }
