@@ -44,17 +44,33 @@ export function study(key){
  }
  function support(id,z,x,y,ri,ro,b,type='bolas'){
   const g='Rodamiento '+id,R=(ri+ro)/2,gap=(ro-ri),rolling=gap*.23;
-  const ref='br-'+[ri,ro,b,type].join('-');
-  const track=type==='bolas'?r.drawCircle(rolling*1.03).translate(R,b/2).sketchOnPlane('XZ').revolve([0,0,1]):null;
+  const isBall=type==='bolas',ref='br-'+[ri,ro,b,type].join('-');
+  const track=isBall?r.drawCircle(rolling*1.03).translate(R,b/2).sketchOnPlane('XZ').revolve([0,0,1]):null;
   const inner=()=>{const sh=ring(R-rolling*(track?.7:1.02),ri,b);return track?sh.cut(track):sh;};
   const outer=()=>{const sh=ring(ro,R+rolling*(track?.7:1.02),b);return track?sh.cut(track):sh;};
-  part(id+'-int','Aro interior',g,inner,z,x,y,{ref:ref+'-i'});
-  part(id+'-ext','Aro exterior',g,outer,z,x,y,{ref:ref+'-o',color:palette.dark});
+  const common={subassembly:g};
+  part(id+'-int','Aro interior',g,inner,z,x,y,{...common,subPart:'inner',ref:ref+'-i'});
+  part(id+'-ext','Aro exterior',g,outer,z,x,y,{...common,subPart:'outer',ref:ref+'-o',color:palette.dark});
+  // Jaula didáctica completa: dos aros y diez puentes entre alojamientos.
+  // No se interpretan aquí retenes ni escudos, pues la lámina no los identifica.
+  part(id+'-cage','Jaula de rodamiento (interpretativa)',g,()=>{
+    const t=Math.max(.7,Math.min(b*.09,rolling*.30));
+    const rim=()=>ring(R+rolling*.38,R-rolling*.38,t);
+    let cage=rim().fuse(rim().translateZ(b-t));
+    for(let j=0;j<10;j++){
+      const [px,py]=polar(R,(j+.5)*Math.PI/5);
+      const post=cyl(Math.max(.45,rolling*.13),b-2*t).translate(px,py,t);
+      cage=cage.fuse(post);
+    }
+    return cage;
+  },z,x,y,{...common,subPart:'cage',ref:ref+'-cage',color:palette.light});
   for(let j=0;j<10;j++){
-   const [rx,ry]=polar(R,j*Math.PI/5);
-   part(id+'-r'+j,(track?'Bola ':'Rodillo ')+(j+1),g,()=>track?r.makeSphere(rolling):cyl(rolling,b*.76),z+(track?b/2:b*.12),x+rx,y+ry,{ref:ref+'-r',color:palette.gold});
+    const [rx,ry]=polar(R,j*Math.PI/5);
+    part(id+'-r'+j,(track?'Bola ':'Rodillo ')+(j+1),g,()=>track?r.makeSphere(rolling):cyl(rolling,b*.76),z+(track?b/2:b*.12),x+rx,y+ry,
+      {...common,subPart:'rolling',ref:ref+'-r',color:palette.gold});
   }
  }
+
  function flange(id,z,x,y,ri,ro,thick,n=4){
   const pts=circlePattern(ro*.85,n),rad=Math.max(1,(ro-ri)*.12);
   part(id,'Tapa de apoyo','Tapas',()=>holes(ring(ro,ri,thick),pts,rad*1.12,thick),z,x,y,{cover:true,color:palette.case});
