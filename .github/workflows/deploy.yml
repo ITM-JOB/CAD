@@ -1,0 +1,71 @@
+
+name: Publicar aplicacion CAD en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Obtener codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas
+        run: npm test
+
+      - name: Validar TypeScript
+        run: npx tsc --noEmit
+
+      - name: Compilar aplicacion CAD
+        run: npx vite build --base=/CAD/
+
+      - name: Incluir paquetes CAD
+        run: |
+          if [[ -f outputs/A/index.html && -f outputs/B/index.html && -f outputs/C/index.html ]]; then
+            node scripts/stage-outputs.mjs
+          else
+            echo "Paquetes A, B y C aun no disponibles"
+          fi
+
+      - name: Validar archivos publicados
+        run: |
+          test -s dist/index.html
+          test -d dist/assets
+          test -f dist/laminas/281.pdf
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir sitio
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+      - name: Publicar sitio
+        id: deployment
+        uses: actions/deploy-pages@v4
