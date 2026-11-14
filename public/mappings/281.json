@@ -40,10 +40,10 @@
       "geometry": {
         "type": "rect",
         "coordinateSystem": "normalized-pdf-page",
-        "x": 0.4280618311533888,
-        "y": 0.4327731092436975,
-        "w": 0.0535077288941736,
-        "h": 0.029411764705882353
+        "x": 0.46076099881093935,
+        "y": 0.4369747899159664,
+        "w": 0.023781212841854936,
+        "h": 0.02100840336134454
       },
       "evidence": {
         "status": "verified",
@@ -208,15 +208,15 @@
       "geometry": {
         "type": "rect",
         "coordinateSystem": "normalized-pdf-page",
-        "x": 0.6884661117717004,
-        "y": 0.2504201680672269,
-        "w": 0.013079667063020214,
-        "h": 0.01764705882352941
+        "x": 0.6730083234244947,
+        "y": 0.2957983193277311,
+        "w": 0.0089179548156956,
+        "h": 0.02857142857142857
       },
       "evidence": {
         "status": "verified",
         "source": "manual_source_inspection",
-        "notes": "Inner input hub, continuous left body around central bore in Fig.2. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "notes": "Interior of the hatched left input-hub flange in Fig.2, below the bore; original source reviewed at 2x. Identity only; model dimensions are illustrative.",
         "reviewer": "engineering-source-review-M3"
       }
     }

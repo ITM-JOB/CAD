@@ -116,7 +116,7 @@ export class Viewport{
   const plane=new T.Plane(normal,-normal.dot(this.center)-this.cut*this.radius);
   for(const p of this.meta.parts){
    const obj=this.objects.get(p.id),mat=obj.material as T.MeshStandardMaterial;
-   obj.visible=(!this.only||this.only===p.id)&&(!this.onlyGroup||subgroupFor(p)===this.onlyGroup)&&!this.hidden.has(p.id);
+   obj.visible=(!this.only||this.selectedIds.has(p.id))&&(!this.onlyGroup||subgroupFor(p)===this.onlyGroup)&&!this.hidden.has(p.id);
        mat.color.set(this.motionColors?(classifyPart(p,this.meta.key).category==='fixed'?'#74777c':'#7c4dff'):p.color);
    mat.wireframe=this.wire;mat.transparent=this.transparent&&p.cover;mat.opacity=mat.transparent?.19:1;mat.depthWrite=!mat.transparent;
    mat.clippingPlanes=this.section==='none'?[]:[plane];

@@ -11,7 +11,7 @@ export async function linkedPdf(bytes,mapping,base='https://itm-job.github.io/CA
  const doc=await PDFDocument.load(bytes),pages=doc.getPages();let count=0;
  for(const r of mapping.regions.filter(r=>r.evidence.status==='verified')){
   const page=pages[r.page-1];if(!page)throw Error('Página inexistente');const b=page.getCropBox(),box=[b.x,b.y,b.x+b.width,b.y+b.height];
-  const url=new URL(base);url.search=new URLSearchParams({sheet:mapping.sheetId,study:r.studyId,part:r.instanceIds[0]}).toString();
+  const url=new URL(base);url.search=new URLSearchParams({sheet:mapping.sheetId,study:r.studyId,part:r.instanceIds[0],region:r.id}).toString();
   const annots=page.node.lookupMaybe(PDFName.of('Annots'),PDFArray)||doc.context.obj([]);
   for(const [x,y,u,v] of safeLinkRects(r.geometry)){const a=toPdf([x,v],box),b=toPdf([u,y],box);const link=doc.context.obj({Type:'Annot',Subtype:'Link',Rect:[...a,...b],Border:[0,0,0],A:{Type:'Action',S:'URI',URI:PDFString.of(url.href)}});annots.push(doc.context.register(link));count++;}
   page.node.set(PDFName.of('Annots'),annots);

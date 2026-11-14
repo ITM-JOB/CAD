@@ -6,9 +6,10 @@ import {assemblySheet,partsBook,item} from './exploded';
 import {zipSync,strToU8} from 'fflate';
 import {denomination} from './nomenclature.mjs';
 import {classifyPart,subgroupFor,studyNotice} from './learning.mjs';
+import {componentInventory} from './mapping/identity.mjs';
 import {readDeepLink} from './sync/selection.mjs';
 import {sheets as librarySheets} from './library.mjs';
-import {initSheetLink,updateLinkedSheet,highlightLinkedPart} from './sheet-link';
+import {initSheetLink,updateLinkedSheet,highlightLinkedPart,restoreLinkedRegion} from './sheet-link';
 setupStudio();
 import {Viewport,calibration,phases} from './viewport';
 import {defaults,definitions,clutch,validate} from './mechanics.mjs';
@@ -48,7 +49,7 @@ function status(t){el('status').textContent=t;}
 function selected(){return meta?.parts.find(i=>i.id===selection);}
 function select(id,ids=[id],origin='cad'){
  if(!meta)return;selection=id;viewport.selected=id;viewport.selectedIds=new Set(ids);
- document.querySelectorAll('.node').forEach(n=>n.classList.toggle('selected',(n as HTMLElement).dataset.id===id));
+ document.querySelectorAll('.node').forEach(n=>n.classList.toggle('selected',ids.includes((n as HTMLElement).dataset.id)));
  const i=selected();if(!i)return;highlightLinkedPart(id,origin,ids);
  if(viewport.onlyGroup && subgroupFor(i)!==viewport.onlyGroup){viewport.onlyGroup=subgroupFor(i)||'';viewport.style();}
  if(viewport.only){viewport.only=id;viewport.hidden.delete(id);}
@@ -99,7 +100,7 @@ function refreshPanel(){
  el('calibration').textContent=active==='A'?'Escala relativa. Esta lámina carece de cotas legibles.':active==='B'?'Calibración radial con Ø240. Escala axial supuesta isotrópica.':'Calibración axial con 380 mm y radial con Ø60. Vista A y detalle C–C tienen escalas distintas.';
  if(isStudy(active))el('calibration').textContent='Consultar medidas y variantes en el PDF original. Forma, cantidades y posiciones del modelo son interpretativas.';
  const span=Math.max(...meta.parts.map(i=>Math.max(...i.cad.bounds[1].map((v,j)=>v-i.cad.bounds[0][j]))));el('shift').min=String(-Math.ceil(span));el('shift').max=String(Math.ceil(span));
- updateLinkedSheet(active,meta.parts.map(x=>x.id)).then(()=>{if(selection)highlightLinkedPart(selection);});
+ updateLinkedSheet(active,meta.parts).then(()=>{const region=new URLSearchParams(location.search).get('region');if(region&&restoreLinkedRegion(region))return;if(selection)highlightLinkedPart(selection);});
  select(meta.parts.some(i=>i.id===selection)?selection:(({C:'disc-1',B:'disc',A:'input'})[active]||meta.parts[0].id));overlay();
 }
 function build(key,params){
@@ -115,6 +116,7 @@ function build(key,params){
   if(data.action!=='built')return;
   old?.terminate();worker=pending;meta=data.meta;active=key;p=params;saved[key]=p;busy=false;
   for(const part of meta.parts){part.name=denomination(part.name);part.group=denomination(part.group);part.parent=key+'/'+part.group;}
+  meta.componentInventory=componentInventory(meta,sheetFor(active));
   viewport.load(meta,data.geometries);el('view').value='Isométrica';el('refView').value='off';el('assembly').value=active;
   reset();refreshPanel();status('Núcleo listo · '+Object.keys(data.geometries).length+' geometrías');
  };
@@ -132,7 +134,7 @@ for(const id of ['transparent','wire','section','cut'])el(id).oninput=()=>{
 (el('refView') as unknown as HTMLSelectElement).add(new Option('Vista de extremo alineada','end'));
 el('refView').onchange=()=>{const mode=el('refView').value;if(['aligned','end'].includes(mode)){const view=mode==='end'?'Frontal':'Axial';el('view').value=view;viewport.setView(view);}overlay();};el('opacity').oninput=overlay;
 function fitCurrent(){viewport.draw(val('eng'),phase,val('explode'));viewport.setView(el('view').value);}
-el('isolate').onclick=()=>{viewport.onlyGroup='';viewport.only=viewport.only===selection?'':selection;viewport.hidden.delete(selection);viewport.style();fitCurrent();};
+el('isolate').onclick=()=>{viewport.onlyGroup='';viewport.only=viewport.only?'':selection;viewport.hidden.delete(selection);viewport.style();fitCurrent();};
 el('hide').onclick=()=>{if(viewport.hidden.has(selection))viewport.hidden.delete(selection);else viewport.hidden.add(selection);viewport.style();};
 el('show').onclick=()=>{viewport.only='';viewport.onlyGroup='';viewport.hidden.clear();viewport.style();fitCurrent();};
 el('motion-colors').onchange=()=>{viewport.motionColors=el('motion-colors').checked;viewport.style();};

@@ -16,7 +16,7 @@ async def main():
     await page.locator('.pdf-region').first.wait_for(timeout=30000)
     assert await page.locator('#pdf-page').get_attribute('width')!='0'
     assert part in await page.locator('#properties').inner_text()
-   await ready('C','281','shaft');results.append('deep-link C shaft / original PDF render')
+   await ready('C','281','shaft');await page.screenshot(path=str(OUT/'split-workspace.png'));results.append('deep-link C shaft / original PDF render')
    # PDF -> CAD exact ID, tree and inspector; screenshot includes real source.
    await page.locator('[data-region="281-C-piston-3"]').click()
    assert 'C::piston' in await page.locator('#properties').inner_text()
