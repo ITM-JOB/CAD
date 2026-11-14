@@ -30,7 +30,7 @@ export class Viewport{
  scene=new T.Scene(); root=new T.Group(); objects=new Map<string,T.Mesh>(); renderer:T.WebGLRenderer;
  ortho=new T.OrthographicCamera();persp=new T.PerspectiveCamera(36,1,.1,10000);camera:T.Camera=this.ortho;
  orbit:OrbitControls; center=new T.Vector3(); radius=160;extent=400; view='Isométrica';meta:any;
- selectedIds=new Set<string>(); selected=''; hidden=new Set<string>();only='';onlyGroup='';wire=false;transparent=false;section='none';cut=0;
+ sourceSelection=false; selectedIds=new Set<string>(); selected=''; hidden=new Set<string>();only='';onlyGroup='';wire=false;transparent=false;section='none';cut=0;
     motionColors=false; subassemblyTarget='';subExplode=0;
  offsets=new Map<string,T.Vector3>();manual=new Map<string,{axis:string,value:number}>(); guides:T.LineSegments; guidesOn=true;
  dirty=true;lastPose='';
@@ -118,7 +118,7 @@ export class Viewport{
    const obj=this.objects.get(p.id),mat=obj.material as T.MeshStandardMaterial;
    obj.visible=(!this.only||this.selectedIds.has(p.id))&&(!this.onlyGroup||subgroupFor(p)===this.onlyGroup)&&!this.hidden.has(p.id);
        mat.color.set(this.motionColors?(classifyPart(p,this.meta.key).category==='fixed'?'#74777c':'#7c4dff'):p.color);
-   mat.wireframe=this.wire;mat.transparent=this.transparent&&p.cover;mat.opacity=mat.transparent?.19:1;mat.depthWrite=!mat.transparent;
+   mat.wireframe=this.wire;mat.transparent=(this.transparent&&p.cover)||(this.sourceSelection&&!this.selectedIds.has(p.id));mat.opacity=mat.transparent?.16:1;mat.depthWrite=!mat.transparent;
    mat.clippingPlanes=this.section==='none'?[]:[plane];
    mat.emissive.set((p.id===this.selected||this.selectedIds.has(p.id))?0x275e50:0);mat.needsUpdate=true;
   }

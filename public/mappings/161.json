@@ -3,5 +3,30 @@
   "sheetId": "161",
   "sourcePdf": "laminas/161.pdf",
   "sourceSha256": "36239ca1326e98bbfbe37511ab689e69b26b5dbe39978f9808908ecab143b1da",
-  "regions": []
+  "regions": [
+    {
+      "id": "161-161-eje-0-review",
+      "studyId": "161",
+      "componentId": "161::eje-0",
+      "instanceIds": [
+        "eje-0"
+      ],
+      "page": 1,
+      "viewId": "main-developed-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.1539833531510107,
+        "y": 0.4319327731092437,
+        "w": 0.0077288941736028535,
+        "h": 0.023529411764705882
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Left spindle V. Gear engagements are not inferred from this identity mapping. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

@@ -24,6 +24,10 @@ async def main():
    await page.locator('.node[data-id="shaft"]').click()
    assert await page.locator('.pdf-region.active').count()==2
    await page.screenshot(path=str(OUT/'cad-to-pdf.png'));results.append('Tree/CAD shaft -> two PDF regions')
+   await page.get_by_role('button',name='Aislar',exact=True).click()
+   bb=await page.locator('#stage').bounding_box();await page.mouse.click(bb['x']+bb['width']/2+10,bb['y']+bb['height']/2)
+   assert await page.locator('#properties').get_attribute('data-selection-origin')=='cad'
+   await page.get_by_role('button',name='Mostrar todo',exact=True).click();results.append('Real Three.js mesh raycast -> PDF associations')
    for zoom in ['150','250','75']:
     await page.get_by_label('Zoom PDF',exact=True).fill(zoom);await page.get_by_label('Zoom PDF',exact=True).press('Tab')
     await page.locator('[data-region="281-C-piston-3"]').click()
@@ -34,6 +38,11 @@ async def main():
    await page.get_by_role('button',name='Aislar',exact=True).click();await page.get_by_role('button',name='Mostrar todo',exact=True).click();results.append('Explosion / isolate regression')
    async with page.expect_download() as dl:await page.get_by_role('button',name='Descargar PDF interactivo',exact=True).click()
    download=await dl.value;await download.save_as(str(OUT/'281-interactive.pdf'));results.append('Real linked PDF download')
+   import fitz
+   pdf=fitz.open(str(OUT/'281-interactive.pdf'));uri=pdf[0].get_links()[0]['uri']
+   await page.goto(uri.replace('https://itm-job.github.io/CAD/','http://127.0.0.1:5179/CAD/'))
+   await page.wait_for_function("document.querySelector('#status')?.textContent.includes('Núcleo listo')",timeout=90000)
+   await page.locator('.pdf-region.active').first.wait_for();assert 'C::shaft' in await page.locator('#properties').inner_text();results.append('Downloaded PDF URI -> exact CAD part')
    await page.get_by_role('button',name='Página',exact=True).click()
    # Editor is opt-in, drafts do not replace shared mappings until explicitly loaded.
    assert not await page.locator('#map-edit-tools').is_visible()
@@ -61,6 +70,7 @@ async def main():
     await page.locator('#'+button).evaluate('(el)=>el.closest("details").open=true')
     async with page.expect_download(timeout=90000) as dl:await page.locator('#'+button).click()
     await (await dl.value).save_as(str(OUT/name))
+    content=(OUT/name).read_bytes();assert content.startswith(b'ISO-10303-21') if name.endswith('.step') else content[:4]==b'glTF'
    results.append('STEP and GLB downloads')
    await page.set_viewport_size({'width':390,'height':844});await page.get_by_role('button',name='Página',exact=True).click();await page.screenshot(path=str(OUT/'mobile.png'));results.append('Mobile layout render')
    assert not errors,errors

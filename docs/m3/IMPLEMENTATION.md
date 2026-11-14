@@ -10,7 +10,7 @@ Read README, DESPIECES, VALIDACION, docs/AUDITORIA_TECNICA_2026-11-13 and docs/M
 |---|---|---|
 | Original PDF inside workspace | No, raster preview only | PDF.js, local worker, actual original bytes |
 | Persistent coordinates | One normalized image rectangle per instance | Multiple rect/polygon regions in unrotated PDF CropBox coordinates |
-| Shared source mappings | 15 empty dictionaries | Version 2, hash-bound, 13 reviewed patches in 3 priority studies |
+| Shared source mappings | 15 empty dictionaries | Version 2, hash-bound, 31 reviewed patches across all 15 sheets, plus one uncertain candidate |
 | PDF / tree / CAD selection | Local rectangles and existing select callback | Shared select callback and selection state, canonical IDs, multi-instance highlighting |
 | Authoring | Draw/replace rectangle | Polygon/rect creation, vertices, translation, review notes/status, undo/redo, import/export |
 | Linked PDF download | Absent | Real Link/URI PDF annotations and deep-link study/part routing |
@@ -32,7 +32,7 @@ Read README, DESPIECES, VALIDACION, docs/AUDITORIA_TECNICA_2026-11-13 and docs/M
 
 280 and 281 inspected from original PDFs rendered at 2x, including enlarged disc-pack section. The 13 patches deliberately sit inside visible components, rather than pretending to segment entire bodies. They establish identity only, not manufacturing equivalence. C has five identified component identities, including two shaft occurrences; B four; 281 figure 2 three. Geometry and dimensions retain existing educational caveats. Narrow lining patches refer to equivalent modeled disc solids, not independently manufactured facings.
 
-Other 13 sheets have manifest and v2 validation support and were visually surveyed. Their individual component correspondences remain unresolved; no hotspots were invented. `coverage.json` lists every modeled ID with its unresolved reason. The denominator of identifiable source components is not established: percentage is null, never modeled-instance-based. This is partial library mapping, not complete coverage.
+All 15 sheets were inspected at 2x from original PDF pages. Eighteen conservative patches extend source identity review to shafts, spindles, housings and the centrifugal drum. Twenty-one studies have at least one verified source identity; study 296-2 has only an uncertain candidate because the simplified model does not establish exact source variant correspondence. Remaining components are explicitly unresolved. `coverage.json` lists every modeled ID with its unresolved reason. The denominator of identifiable source components is not established: percentage is null, never modeled-instance-based. Every sheet is covered by the workflow; component-level mapping remains partial and no complete-coverage claim is made.
 
 ## Publication workflow
 
@@ -41,3 +41,19 @@ Export a mapping, review coordinates against original source and modeled identit
 ## Known limitations requiring further engineering
 
 All 15 source PDFs are single-page scanned drawings. Thumbnails are therefore unnecessary; native page navigation supports multi-page inputs. Reference A has only an image, no original PDF. No OCR or automated mechanical recognition is claimed. Most library source correspondences, dimension-by-dimension evidence and exact group/BOM associations need further review. Polygon resizing is by vertex editing, not an independent bounding-box handle. Source view names are author supplied; no OCR labels are fabricated. The author can choose multiple existing instance IDs in the editor; the schema and viewport retain group highlighting and isolation. No native embedded 3D PDF is claimed; exported PDFs link to the web model. Deep links require this M3 branch to be merged/deployed before the public URL uses M3 routing. Tests from M2 cannot certify source dimensional equivalence or manufacturing validity.
+
+## Selection and rendering topology
+
+```mermaid
+flowchart TD
+    P["PDF.js + SVG regions"] --> S["Existing central select controller"]
+    T["Tree and BOM positions"] --> S
+    C["Three.js raycast"] --> S
+    S --> I["Canonical selection and inspector"]
+    I --> R["PDF occurrences and evidence"]
+    I --> G["CAD highlight, focus and isolation"]
+    M["Versioned mappings + source SHA"] --> P
+    M --> R
+```
+
+Parameter evidence retains the original EXPLICIT/ESTIMATED metadata, nominal values and edited values in the exported canonical inventory. These are assembly parameters, not automatically assigned manufacturing dimensions for every part. Bounds/volumes remain measurements of the generated solid. EXPLICIT nominal source values classify VERIFIED; raster estimates classify INFERRED; edited/adopted geometry classifies ILLUSTRATIVE; missing provenance classifies UNRESOLVED.

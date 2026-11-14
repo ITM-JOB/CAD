@@ -3,5 +3,30 @@
   "sheetId": "157",
   "sourcePdf": "laminas/157.pdf",
   "sourceSha256": "34f327c0dd2915fdebd30af2c06c312b45f7b7ca230763f4ecdd5d9a3eb13b64",
-  "regions": []
+  "regions": [
+    {
+      "id": "157-157-eje-1-review",
+      "studyId": "157",
+      "componentId": "157::eje-1",
+      "instanceIds": [
+        "eje-1"
+      ],
+      "page": 1,
+      "viewId": "A-A",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.356718192627824,
+        "y": 0.5588235294117647,
+        "w": 0.0267538644470868,
+        "h": 0.007563025210084034
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Lower secondary shaft splined surface, inside its continuous outline. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

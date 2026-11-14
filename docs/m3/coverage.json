@@ -4,17 +4,13 @@
     "study": "60",
     "modeledInstances": 30,
     "validSolidDefinitions": 14,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
       {
         "id": "base",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
-        "id": "tube",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
       {
@@ -136,15 +132,11 @@
     "study": "89",
     "modeledInstances": 291,
     "validSolidDefinitions": 19,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "carcasa",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "cono-0--1",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -1312,8 +1304,8 @@
     "study": "154",
     "modeledInstances": 103,
     "validSolidDefinitions": 24,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
@@ -1519,10 +1511,6 @@
       },
       {
         "id": "tapa-0-1-fix-4-w",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
-        "id": "eje-1",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
       {
@@ -1736,8 +1724,8 @@
     "study": "157",
     "modeledInstances": 105,
     "validSolidDefinitions": 23,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
@@ -1958,10 +1946,6 @@
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
       {
-        "id": "eje-1",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
         "id": "e1-g0",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
@@ -2168,17 +2152,13 @@
     "study": "161",
     "modeledInstances": 243,
     "validSolidDefinitions": 34,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
       {
         "id": "cuerpo",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
-        "id": "eje-0",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
       {
@@ -3152,8 +3132,8 @@
     "study": "164",
     "modeledInstances": 240,
     "validSolidDefinitions": 39,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
@@ -3930,10 +3910,6 @@
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
       {
-        "id": "eje-4",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
         "id": "e4-g0",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
@@ -4124,8 +4100,8 @@
     "study": "199",
     "modeledInstances": 746,
     "validSolidDefinitions": 21,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
@@ -7022,10 +6998,6 @@
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
       {
-        "id": "arbol-2",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
         "id": "apoyo-2-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       },
@@ -7120,15 +7092,11 @@
     "study": "209-1",
     "modeledInstances": 64,
     "validSolidDefinitions": 17,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -7388,15 +7356,11 @@
     "study": "209-2",
     "modeledInstances": 64,
     "validSolidDefinitions": 17,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -7656,15 +7620,11 @@
     "study": "210-1",
     "modeledInstances": 51,
     "validSolidDefinitions": 15,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -7872,15 +7832,11 @@
     "study": "210-2",
     "modeledInstances": 51,
     "validSolidDefinitions": 15,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -8088,15 +8044,11 @@
     "study": "210-3",
     "modeledInstances": 51,
     "validSolidDefinitions": 15,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -8304,15 +8256,11 @@
     "study": "212-1",
     "modeledInstances": 50,
     "validSolidDefinitions": 14,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -8516,15 +8464,11 @@
     "study": "212-2",
     "modeledInstances": 50,
     "validSolidDefinitions": 14,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -8728,15 +8672,11 @@
     "study": "214-1",
     "modeledInstances": 51,
     "validSolidDefinitions": 15,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -8944,15 +8884,11 @@
     "study": "214-2",
     "modeledInstances": 51,
     "validSolidDefinitions": 15,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "arbol",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "apoyo-0-int",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
@@ -9160,8 +9096,8 @@
     "study": "263",
     "modeledInstances": 57,
     "validSolidDefinitions": 11,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
@@ -9387,10 +9323,6 @@
       },
       {
         "id": "cruceta-1",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
-      {
-        "id": "arbol",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
       }
     ]
@@ -9916,15 +9848,11 @@
     "study": "296-1",
     "modeledInstances": 14,
     "validSolidDefinitions": 7,
-    "verifiedSourceComponents": 0,
-    "verifiedRegions": 0,
+    "verifiedSourceComponents": 1,
+    "verifiedRegions": 1,
     "identifiableSourceComponentTotal": null,
     "coveragePercent": null,
     "unresolved": [
-      {
-        "id": "tambor",
-        "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."
-      },
       {
         "id": "hub",
         "reason": "Source correspondence not individually reviewed; model quantity is not evidence of source quantity."

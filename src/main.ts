@@ -50,15 +50,15 @@ function selected(){return meta?.parts.find(i=>i.id===selection);}
 function select(id,ids=[id],origin='cad'){
  if(!meta)return;selection=id;viewport.selected=id;viewport.selectedIds=new Set(ids);
  document.querySelectorAll('.node').forEach(n=>n.classList.toggle('selected',ids.includes((n as HTMLElement).dataset.id)));
- const i=selected();if(!i)return;highlightLinkedPart(id,origin,ids);
+ const i=selected();if(!i)return;viewport.sourceSelection=origin==='pdf';
  if(viewport.onlyGroup && subgroupFor(i)!==viewport.onlyGroup){viewport.onlyGroup=subgroupFor(i)||'';viewport.style();}
  if(viewport.only){viewport.only=id;viewport.hidden.delete(id);}
  const shift=viewport.manual.get(id);el('shift').value=String(shift?.value||0);el('shift-axis').value=(shift?.axis||'z').toUpperCase();el('shift-value').textContent=el('shift').value+' mm';
- const cls=classifyPart(i,active);el('part-name').textContent=i.name;
+ el('properties').dataset.selectionOrigin=origin;const cls=classifyPart(i,active);el('part-name').textContent=i.name;
  if(subgroupFor(i)){el('subassembly-target').value=subgroupFor(i);viewport.subassemblyTarget=subgroupFor(i);}
  const bounds=i.cad.bounds,dim=bounds[1].map((v,j)=>(v-bounds[0][j]).toFixed(1)).join(' × ');
  el('properties').innerHTML='<p>'+i.role+'</p><dl><dt>Identidad canónica</dt><dd>'+active+'::'+id+'</dd><dt>Grupo</dt><dd>'+i.parent+'</dd><dt>Envolvente local</dt><dd>'+dim+' mm</dd><dt>Volumen CAD</dt><dd>'+(i.cad.volume/1000).toFixed(2)+' cm³</dd><dt>Restricción</dt><dd>'+i.joint+' / '+i.drive+'</dd><dt>Carrera axial</dt><dd>'+i.slide.toFixed(2)+' mm</dd><dt>Material</dt><dd>Sin especificar</dd><dt>Evidencia dimensional</dt><dd>Reconstrucción educativa; cotas impresas y supuestos: consultar Parámetros. Envolvente medida del sólido generado, no cota certificada.</dd></dl>';
- viewport.style();
+ viewport.style();highlightLinkedPart(id,origin,ids);
 }
 function refreshPanel(){
  el('tree').replaceChildren();
@@ -116,7 +116,7 @@ function build(key,params){
   if(data.action!=='built')return;
   old?.terminate();worker=pending;meta=data.meta;active=key;p=params;saved[key]=p;busy=false;
   for(const part of meta.parts){part.name=denomination(part.name);part.group=denomination(part.group);part.parent=key+'/'+part.group;}
-  meta.componentInventory=componentInventory(meta,sheetFor(active));
+  meta.componentInventory=componentInventory(meta,sheetFor(active),definitions[active],p);
   viewport.load(meta,data.geometries);el('view').value='Isométrica';el('refView').value='off';el('assembly').value=active;
   reset();refreshPanel();status('Núcleo listo · '+Object.keys(data.geometries).length+' geometrías');
  };

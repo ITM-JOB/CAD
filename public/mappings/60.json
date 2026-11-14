@@ -3,5 +3,30 @@
   "sheetId": "60",
   "sourcePdf": "laminas/60.pdf",
   "sourceSha256": "43ca4d16878e17bda12f5c814982639ac1c0149b8ac06567dbcd23c502f898f8",
-  "regions": []
+  "regions": [
+    {
+      "id": "60-60-tube-review",
+      "studyId": "60",
+      "componentId": "60::tube",
+      "instanceIds": [
+        "tube"
+      ],
+      "page": 1,
+      "viewId": "A-A",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.356718192627824,
+        "y": 0.6235294117647059,
+        "w": 0.029726516052318668,
+        "h": 0.008403361344537815
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Hatched upper wall of tubular jack column; excludes interior moving screw. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }
