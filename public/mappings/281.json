@@ -1,5 +1,224 @@
 {
-  "version": 1,
-  "sheet": "281",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "281",
+  "sourcePdf": "laminas/281.pdf",
+  "sourceSha256": "aa9b5689c2bf022497dca428430d1d2905d66c8521bbcdc7a23c01c8a0c9bef3",
+  "regions": [
+    {
+      "id": "281-C-shaft-0",
+      "studyId": "C",
+      "componentId": "C::shaft",
+      "instanceIds": [
+        "shaft"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.26456599286563615,
+        "y": 0.37142857142857144,
+        "w": 0.08323424494649227,
+        "h": 0.021848739495798318
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Exposed continuous main shaft above its axial keyway; source \u00d860/380 references. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-C-shaft-1",
+      "studyId": "C",
+      "componentId": "C::shaft",
+      "instanceIds": [
+        "shaft"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.4280618311533888,
+        "y": 0.4327731092436975,
+        "w": 0.0535077288941736,
+        "h": 0.029411764705882353
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Second exposed patch of same shaft, below axis and between bearing stations. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-C-cylinder-2",
+      "studyId": "C",
+      "componentId": "C::cylinder",
+      "instanceIds": [
+        "cylinder"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.22711058263971462,
+        "y": 0.23445378151260504,
+        "w": 0.009512485136741973,
+        "h": 0.031932773109243695
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Left hydraulic annular cylinder body, hatched section, outside the piston. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-C-piston-3",
+      "studyId": "C",
+      "componentId": "C::piston",
+      "instanceIds": [
+        "piston"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.2746730083234245,
+        "y": 0.20588235294117646,
+        "w": 0.0089179548156956,
+        "h": 0.031932773109243695
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Piston section immediately ahead of the disc pack; distinct hatch direction and sliding interface. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-C-disc-1-4",
+      "studyId": "C",
+      "componentId": "C::disc-1",
+      "instanceIds": [
+        "disc-1"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.3103448275862069,
+        "y": 0.2008403361344538,
+        "w": 0.004161712247324614,
+        "h": 0.023529411764705882
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "First lined plate in the axial section. Narrow interior patch avoids adjacent plates; lining/support modeled as one equivalent solid. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-C-separator-1-5",
+      "studyId": "C",
+      "componentId": "C::separator-1",
+      "instanceIds": [
+        "separator-1"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.321640903686088,
+        "y": 0.20336134453781513,
+        "w": 0.0047562425683709865,
+        "h": 0.024369747899159664
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Intermediate plate between the two lined discs, as modeled by the C generator. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-281-2-cylinder-6",
+      "studyId": "281-2",
+      "componentId": "281-2::cylinder",
+      "instanceIds": [
+        "cylinder"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.8751486325802615,
+        "y": 0.39915966386554624,
+        "w": 0.014268727705112961,
+        "h": 0.02689075630252101
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Right annular hydraulic cylinder wall surrounding piston; section Fig.2. Dimensions remain illustrative. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-281-2-piston-7",
+      "studyId": "281-2",
+      "componentId": "281-2::piston",
+      "instanceIds": [
+        "piston"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.856718192627824,
+        "y": 0.3983193277310924,
+        "w": 0.0089179548156956,
+        "h": 0.020168067226890758
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Sliding piston to left of the right-hand cylinder, above return-spring bore. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "281-281-2-hub-8",
+      "studyId": "281-2",
+      "componentId": "281-2::hub",
+      "instanceIds": [
+        "hub"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.6884661117717004,
+        "y": 0.2504201680672269,
+        "w": 0.013079667063020214,
+        "h": 0.01764705882352941
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Inner input hub, continuous left body around central bore in Fig.2. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

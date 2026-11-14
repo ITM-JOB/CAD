@@ -1,5 +1,104 @@
 {
-  "version": 1,
-  "sheet": "280",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "280",
+  "sourcePdf": "laminas/280.pdf",
+  "sourceSha256": "f986d438f145feaa4a74c52f9680e2dddeead8c87137d237a8d2842d56bdf455",
+  "regions": [
+    {
+      "id": "280-B-shaft-0",
+      "studyId": "B",
+      "componentId": "B::shaft",
+      "instanceIds": [
+        "shaft"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.23365041617122473,
+        "y": 0.5050420168067227,
+        "w": 0.05291319857312723,
+        "h": 0.03613445378151261
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Gearbox input shaft exposed to right of splined driven-disc hub, inside central bore. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "280-B-pressure-1",
+      "studyId": "B",
+      "componentId": "B::pressure",
+      "instanceIds": [
+        "pressure"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.17300832342449465,
+        "y": 0.3235294117647059,
+        "w": 0.006539833531510107,
+        "h": 0.0453781512605042
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Pressure plate section immediately to right of thin lined driven disc and left of release lever. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "280-B-flywheel-2",
+      "studyId": "B",
+      "componentId": "B::flywheel",
+      "instanceIds": [
+        "flywheel"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.12366230677764566,
+        "y": 0.32857142857142857,
+        "w": 0.014863258026159334,
+        "h": 0.03865546218487395
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Engine-side flywheel section to left of friction faces. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "280-B-disc-3",
+      "studyId": "B",
+      "componentId": "B::disc",
+      "instanceIds": [
+        "disc"
+      ],
+      "page": 1,
+      "viewId": "main-axial-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.15695600475624258,
+        "y": 0.31596638655462184,
+        "w": 0.0035671819262782403,
+        "h": 0.03277310924369748
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Thin driven disc between flywheel and pressure plate; conservative interior patch. Reviewed against original PDF rendered at 2 points/pixel and CAD definition; identifies component only, not manufacturing equivalence.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

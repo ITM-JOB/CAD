@@ -1,5 +1,7 @@
 {
-  "version": 1,
-  "sheet": "263",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "263",
+  "sourcePdf": "laminas/263.pdf",
+  "sourceSha256": "8a9a24c9675d7698f67992b13e59a39a6d1ed571e8dd95aa193355ceb62bbd6a",
+  "regions": []
 }
