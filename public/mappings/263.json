@@ -1,5 +1,32 @@
 {
-  "version": 1,
-  "sheet": "263",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "263",
+  "sourcePdf": "laminas/263.pdf",
+  "sourceSha256": "8a9a24c9675d7698f67992b13e59a39a6d1ed571e8dd95aa193355ceb62bbd6a",
+  "regions": [
+    {
+      "id": "263-263-arbol-review",
+      "studyId": "263",
+      "componentId": "263::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "main-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.4780023781212842,
+        "y": 0.23781512605042016,
+        "w": 0.018430439952437573,
+        "h": 0.023529411764705882
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Exposed intermediate shaft left of break line, between the two articulated end assemblies. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

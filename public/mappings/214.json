@@ -1,5 +1,56 @@
 {
-  "version": 1,
-  "sheet": "214",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "214",
+  "sourcePdf": "laminas/214.pdf",
+  "sourceSha256": "5d24d0c68604226ed526fcaffe6d1caf4589aa0bcad545fe89ddf878a9c35d5b",
+  "regions": [
+    {
+      "id": "214-214-1-arbol-review",
+      "studyId": "214-1",
+      "componentId": "214-1::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-1-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.3864447086801427,
+        "y": 0.3697478991596639,
+        "w": 0.07728894173602854,
+        "h": 0.020168067226890758
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Locomotive axle center, away from dimension text and bearing housings. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "214-214-2-arbol-review",
+      "studyId": "214-2",
+      "componentId": "214-2::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.5053507728894173,
+        "y": 0.5966386554621849,
+        "w": 0.07431629013079667,
+        "h": 0.020168067226890758
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Rail wagon axle center below wheel spacing line and above axial centerline. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

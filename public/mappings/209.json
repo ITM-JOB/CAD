@@ -1,5 +1,56 @@
 {
-  "version": 1,
-  "sheet": "209",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "209",
+  "sourcePdf": "laminas/209.pdf",
+  "sourceSha256": "d050c305cebf1e99ceb9d91533e4c3f46b688b712bf40af5a481f2ff2a1260ee",
+  "regions": [
+    {
+      "id": "209-209-1-arbol-review",
+      "studyId": "209-1",
+      "componentId": "209-1::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-1-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.3329369797859691,
+        "y": 0.4579831932773109,
+        "w": 0.07728894173602854,
+        "h": 0.01680672268907563
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Continuous main motor shaft below rotor stack; unhatched shaft convention. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "209-209-2-arbol-review",
+      "studyId": "209-2",
+      "componentId": "209-2::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.8228299643281808,
+        "y": 0.4226890756302521,
+        "w": 0.007134363852556481,
+        "h": 0.02689075630252101
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Continuous unhatched vertical rotor shaft within the \u00d865 reference in Fig.2, below upper bore termination. Source identity only; exact dimensions and rotor fit are not certified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

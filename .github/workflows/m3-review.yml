@@ -1,0 +1,49 @@
+name: M3 validation without deployment
+on:
+  push:
+    branches: [feature/m3-pdf-cad]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run validate:mappings
+      - run: npm run pdf:export
+      - run: npm run build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright pymupdf
+      - run: python -m playwright install --with-deps chromium
+      - name: Browser acceptance against compiled app
+        run: python scripts/m3-browser.py
+      - name: Independent PDF validation
+        run: |
+          python - <<'PY'
+          import fitz, json
+          for s in json.load(open('public/document-manifest.json')):
+              a=fitz.open(f'public/laminas/{s}.pdf'); b=fitz.open(f'public/linked-pdfs/{s}-interactive.pdf')
+              assert a[0].get_pixmap().samples == b[0].get_pixmap().samples
+              assert b[0].get_links()
+              print(s, len(b[0].get_links()), 'links / original artwork preserved')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: M3-review-evidence
+          path: |
+            docs/m3
+            public/linked-pdfs
+            dist

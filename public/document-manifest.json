@@ -1,0 +1,347 @@
+{
+  "154": {
+    "sourcePdf": "laminas/154.pdf",
+    "sha256": "bf2f1d06584a5afe9c9094910741b87247e5e24c5db0dd52b42f477b16fcbe6c",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "157": {
+    "sourcePdf": "laminas/157.pdf",
+    "sha256": "34f327c0dd2915fdebd30af2c06c312b45f7b7ca230763f4ecdd5d9a3eb13b64",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "161": {
+    "sourcePdf": "laminas/161.pdf",
+    "sha256": "36239ca1326e98bbfbe37511ab689e69b26b5dbe39978f9808908ecab143b1da",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "164": {
+    "sourcePdf": "laminas/164.pdf",
+    "sha256": "932e04949254b27adae2102fd2ee5c3fadf7be35864f00df19eb73772fba9717",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "199": {
+    "sourcePdf": "laminas/199.pdf",
+    "sha256": "264d19371026fddd434a7160ccc3edbf11c7f425693d5bb474925606789782f6",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "209": {
+    "sourcePdf": "laminas/209.pdf",
+    "sha256": "d050c305cebf1e99ceb9d91533e4c3f46b688b712bf40af5a481f2ff2a1260ee",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "210": {
+    "sourcePdf": "laminas/210.pdf",
+    "sha256": "01444b9f38b5c5936331f0c091c19cafaef3c76c8dfbf8563fe24a7f27a80f65",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "212": {
+    "sourcePdf": "laminas/212.pdf",
+    "sha256": "0b07a3b4771232f4af72b6b728e0e71b448c277d06d0220e25852870e65182eb",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "214": {
+    "sourcePdf": "laminas/214.pdf",
+    "sha256": "5d24d0c68604226ed526fcaffe6d1caf4589aa0bcad545fe89ddf878a9c35d5b",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "263": {
+    "sourcePdf": "laminas/263.pdf",
+    "sha256": "8a9a24c9675d7698f67992b13e59a39a6d1ed571e8dd95aa193355ceb62bbd6a",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "280": {
+    "sourcePdf": "laminas/280.pdf",
+    "sha256": "f986d438f145feaa4a74c52f9680e2dddeead8c87137d237a8d2842d56bdf455",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "281": {
+    "sourcePdf": "laminas/281.pdf",
+    "sha256": "aa9b5689c2bf022497dca428430d1d2905d66c8521bbcdc7a23c01c8a0c9bef3",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "296": {
+    "sourcePdf": "laminas/296.pdf",
+    "sha256": "f482f6212ff96ddbf54fa4281359c42594db17100972dc5d6e789c17d4db93fb",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "60": {
+    "sourcePdf": "laminas/60.pdf",
+    "sha256": "43ca4d16878e17bda12f5c814982639ac1c0149b8ac06567dbcd23c502f898f8",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  },
+  "89": {
+    "sourcePdf": "laminas/89.pdf",
+    "sha256": "ea067bae65e911f584a07f7677c8bc865f6c28bc66256b4b0284fcf5fec606c6",
+    "version": "original-M2",
+    "pages": [
+      {
+        "page": 1,
+        "cropBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "mediaBox": [
+          0.0,
+          0.0,
+          841.0,
+          595.0
+        ],
+        "rotation": 0
+      }
+    ]
+  }
+}

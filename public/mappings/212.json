@@ -1,5 +1,56 @@
 {
-  "version": 1,
-  "sheet": "212",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "212",
+  "sourcePdf": "laminas/212.pdf",
+  "sourceSha256": "0b07a3b4771232f4af72b6b728e0e71b448c277d06d0220e25852870e65182eb",
+  "regions": [
+    {
+      "id": "212-212-1-arbol-review",
+      "studyId": "212-1",
+      "componentId": "212-1::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-1-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.49048751486325803,
+        "y": 0.31932773109243695,
+        "w": 0.05648038049940547,
+        "h": 0.0226890756302521
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Continuous driving shaft between sprocket and right bearing station. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "212-212-2-arbol-review",
+      "studyId": "212-2",
+      "componentId": "212-2::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.2497027348394768,
+        "y": 0.7352941176470589,
+        "w": 0.04756242568370987,
+        "h": 0.015126050420168067
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Continuous return axle left of free wheel; solid shaft convention. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

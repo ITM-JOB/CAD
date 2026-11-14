@@ -1,5 +1,80 @@
 {
-  "version": 1,
-  "sheet": "210",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "210",
+  "sourcePdf": "laminas/210.pdf",
+  "sourceSha256": "01444b9f38b5c5936331f0c091c19cafaef3c76c8dfbf8563fe24a7f27a80f65",
+  "regions": [
+    {
+      "id": "210-210-1-arbol-review",
+      "studyId": "210-1",
+      "componentId": "210-1::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-1-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.5053507728894173,
+        "y": 0.2739495798319328,
+        "w": 0.0178359096313912,
+        "h": 0.0058823529411764705
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Hollow lathe spindle top wall; excludes inner bore. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "210-210-2-arbol-review",
+      "studyId": "210-2",
+      "componentId": "210-2::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-2-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.44589774078478,
+        "y": 0.6697478991596638,
+        "w": 0.023781212841854936,
+        "h": 0.0067226890756302525
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Hollow milling spindle upper shaft wall around bore. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "210-210-3-arbol-review",
+      "studyId": "210-3",
+      "componentId": "210-3::arbol",
+      "instanceIds": [
+        "arbol"
+      ],
+      "page": 1,
+      "viewId": "figure-3-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.08620689655172414,
+        "y": 0.46218487394957986,
+        "w": 0.0077288941736028535,
+        "h": 0.0546218487394958
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Continuous vertical drill spindle, left side of its centerline. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

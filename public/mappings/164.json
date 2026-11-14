@@ -1,5 +1,32 @@
 {
-  "version": 1,
-  "sheet": "164",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "164",
+  "sourcePdf": "laminas/164.pdf",
+  "sourceSha256": "932e04949254b27adae2102fd2ee5c3fadf7be35864f00df19eb73772fba9717",
+  "regions": [
+    {
+      "id": "164-164-eje-4-review",
+      "studyId": "164",
+      "componentId": "164::eje-4",
+      "instanceIds": [
+        "eje-4"
+      ],
+      "page": 1,
+      "viewId": "main-developed-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.6599286563614745,
+        "y": 0.3142857142857143,
+        "w": 0.0178359096313912,
+        "h": 0.013445378151260505
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Upper spindle V; small patch avoids diameter annotations. Developed section does not establish transverse axis positions. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

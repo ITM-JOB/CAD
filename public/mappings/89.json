@@ -1,5 +1,32 @@
 {
-  "version": 1,
-  "sheet": "89",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "89",
+  "sourcePdf": "laminas/89.pdf",
+  "sourceSha256": "ea067bae65e911f584a07f7677c8bc865f6c28bc66256b4b0284fcf5fec606c6",
+  "regions": [
+    {
+      "id": "89-89-carcasa-review",
+      "studyId": "89",
+      "componentId": "89::carcasa",
+      "instanceIds": [
+        "carcasa"
+      ],
+      "page": 1,
+      "viewId": "main-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.4161712247324614,
+        "y": 0.7504201680672269,
+        "w": 0.041617122473246136,
+        "h": 0.0067226890756302525
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Hatched bottom wall of main variator housing. Housing shape in CAD remains simplified. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }

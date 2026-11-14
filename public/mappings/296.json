@@ -1,5 +1,55 @@
 {
-  "version": 1,
-  "sheet": "296",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "296",
+  "sourcePdf": "laminas/296.pdf",
+  "sourceSha256": "f482f6212ff96ddbf54fa4281359c42594db17100972dc5d6e789c17d4db93fb",
+  "regions": [
+    {
+      "id": "296-296-1-tambor-review",
+      "studyId": "296-1",
+      "componentId": "296-1::tambor",
+      "instanceIds": [
+        "tambor"
+      ],
+      "page": 1,
+      "viewId": "figure-1a-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.07728894173602854,
+        "y": 0.15966386554621848,
+        "w": 0.029726516052318668,
+        "h": 0.009243697478991597
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Outer driven drum upper hatched rim, separate from shoe lining below it. Internal linkage reconstruction is interpretive. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    },
+    {
+      "id": "296-296-2-input-candidate",
+      "studyId": "296-2",
+      "componentId": "296-2::cubo-motor",
+      "instanceIds": [
+        "cubo-motor"
+      ],
+      "page": 1,
+      "viewId": "figure-2b-axial",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.3091557669441142,
+        "y": 0.7798319327731092,
+        "w": 0.014863258026159334,
+        "h": 0.004201680672268907
+      },
+      "evidence": {
+        "status": "uncertain",
+        "source": "manual_source_inspection",
+        "notes": "Input shaft/hub candidate on Fig.2b. Exact correspondence with the simplified motor hub and variant phasing is not established; deliberately excluded from browsing and PDF hyperlinks."
+      }
+    }
+  ]
 }

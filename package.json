@@ -7,11 +7,15 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build && node scripts/stage-outputs.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "validate:mappings": "node scripts/m3-coverage.mjs",
+    "pdf:export": "node scripts/generate-linked-pdfs.mjs"
   },
   "dependencies": {
     "@types/three": "0.187.0",
     "fflate": "0.8.3",
+    "pdf-lib": "1.17.1",
+    "pdfjs-dist": "6.5.438",
     "replicad": "1.2.1",
     "replicad-opencascadejs": "1.2.1",
     "three": "0.187.0",

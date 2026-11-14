@@ -1,5 +1,32 @@
 {
-  "version": 1,
-  "sheet": "199",
-  "regions": {}
+  "schemaVersion": 2,
+  "sheetId": "199",
+  "sourcePdf": "laminas/199.pdf",
+  "sourceSha256": "264d19371026fddd434a7160ccc3edbf11c7f425693d5bb474925606789782f6",
+  "regions": [
+    {
+      "id": "199-199-arbol-2-review",
+      "studyId": "199",
+      "componentId": "199::arbol-2",
+      "instanceIds": [
+        "arbol-2"
+      ],
+      "page": 1,
+      "viewId": "main-section",
+      "geometry": {
+        "type": "rect",
+        "coordinateSystem": "normalized-pdf-page",
+        "x": 0.24435196195005945,
+        "y": 0.880672268907563,
+        "w": 0.005945303210463734,
+        "h": 0.010084033613445379
+      },
+      "evidence": {
+        "status": "verified",
+        "source": "manual_source_inspection",
+        "notes": "Exposed lower output-shaft journal below lower support, avoiding bearing and diameter callouts. Source component identity only; dimensions and complete manufacturing geometry are not verified.",
+        "reviewer": "engineering-source-review-M3"
+      }
+    }
+  ]
 }
